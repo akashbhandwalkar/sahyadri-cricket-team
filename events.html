@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events &amp; Moments — Sahyadri Cricket Team</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* =============================================
+           PAGE HERO
+           ============================================= */
+        .events-hero {
+            padding-top: 140px;
+            padding-bottom: 3rem;
+            text-align: center;
+            background: var(--bg);
+            position: relative;
+            overflow: hidden;
+        }
+        .events-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 75%);
+        }
+        .events-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 50% 60% at 30% 60%, rgba(249,115,22,0.13) 0%, transparent 70%),
+                radial-gradient(ellipse 35% 40% at 70% 35%, rgba(56,189,248,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .events-hero-inner {
+            position: relative;
+            z-index: 2;
+        }
+        .events-hero-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.7rem;
+        }
+        .events-hero-title {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 900;
+            color: var(--text-1);
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 0.8rem;
+        }
+        .events-hero-title span {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .events-hero-sub {
+            font-size: 0.96rem;
+            color: var(--text-2);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* =============================================
+           FILTER + GRID SECTION
+           ============================================= */
+        .events-section {
+            background: var(--bg);
+            padding: 0 0 5rem;
+        }
+        .events-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .events-filter-row {
+            display: flex;
+            gap: 0.7rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.8rem;
+        }
+
+        /* =============================================
+           POSTS GRID
+           ============================================= */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* =============================================
+           POST CARD
+           ============================================= */
+        .post-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 48px rgba(0,0,0,0.55), 0 0 30px rgba(249,115,22,0.1);
+            border-color: rgba(255,255,255,0.14);
+        }
+        .post-card.hidden {
+            display: none;
+        }
+
+        /* Card header */
+        .post-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0.9rem;
+            gap: 0.6rem;
+        }
+        .post-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+        .post-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dk));
+            display: grid;
+            place-items: center;
+            font-size: 0.62rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(249,115,22,0.35);
+        }
+        .post-username {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-1);
+        }
+
+        /* Category pill */
+        .post-cat-pill {
+            display: inline-block;
+            padding: 0.22rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+        .cat-field {
+            background: rgba(56,189,248,0.14);
+            color: #38bdf8;
+            border: 1px solid rgba(56,189,248,0.25);
+        }
+        .cat-moments {
+            background: rgba(168,85,247,0.14);
+            color: #c084fc;
+            border: 1px solid rgba(168,85,247,0.25);
+        }
+        .cat-celebrations {
+            background: rgba(251,191,36,0.14);
+            color: #fbbf24;
+            border: 1px solid rgba(251,191,36,0.25);
+        }
+
+        /* Media area */
+        .post-media {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* 1:1 square */
+            overflow: hidden;
+            background: #0a101c;
+        }
+        .post-media img,
+        .post-media video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Play overlay */
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.28);
+            cursor: pointer;
+            transition: background 0.2s ease;
+            z-index: 2;
+        }
+        .play-overlay:hover {
+            background: rgba(0,0,0,0.18);
+        }
+        .play-btn-circle {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            display: grid;
+            place-items: center;
+            font-size: 1.1rem;
+            color: #111;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .play-overlay:hover .play-btn-circle {
+            transform: scale(1.08);
+            background: white;
+        }
+        .play-overlay.hidden {
+            display: none;
+        }
+
+        /* Actions row */
+        .post-actions {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0.9rem 0.35rem;
+            gap: 0.85rem;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--text-1);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            transition: transform 0.2s ease, color 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+        .action-btn:hover {
+            transform: scale(1.15);
+        }
+        .action-btn.liked {
+            color: #ef4444;
+        }
+        .action-btn-comment,
+        .action-btn-share {
+            color: var(--text-1);
+        }
+        .action-btn-comment:hover { color: var(--blue); }
+        .action-btn-share:hover   { color: var(--accent); }
+        .action-bookmark {
+            margin-left: auto;
+            color: var(--text-1);
+        }
+        .action-bookmark:hover { color: var(--gold); }
+
+        /* Caption area */
+        .post-body {
+            padding: 0.1rem 0.9rem 1rem;
+        }
+        .post-likes {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-1);
+            margin-bottom: 0.4rem;
+        }
+        .post-caption {
+            font-size: 0.83rem;
+            color: var(--text-2);
+            line-height: 1.55;
+            margin-bottom: 0.35rem;
+        }
+        .post-caption strong {
+            color: var(--text-1);
+            font-weight: 700;
+        }
+        .post-tags {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.45rem;
+            line-height: 1.5;
+        }
+        .post-time {
+            font-size: 0.72rem;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* =============================================
+           RESPONSIVE
+           ============================================= */
+        @media (max-width: 960px) {
+            .posts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .posts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .events-container { padding: 0 1.2rem; }
+        }
+        @media (max-width: 480px) {
+            .posts-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .post-card {
+                width: 100%;
+            }
+            .events-hero {
+                padding-top: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll progress -->
+    <div class="scroll-bar" id="scrollBar"></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="logo">SCT</div>
+                <span>Sahyadri Cricket Team</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home"      class="nav-link">Home</a></li>
+                <li><a href="index.html#about"     class="nav-link">About</a></li>
+                <li><a href="index.html#players"   class="nav-link">Players</a></li>
+                <li><a href="index.html#gallery"   class="nav-link">Gallery</a></li>
+                <li><a href="index.html#news"      class="nav-link">News</a></li>
+                <li><a href="events.html"          class="nav-link active">Events</a></li>
+                <li><a href="index.html#birthdays" class="nav-link">Birthdays</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== STATS TICKER ===== -->
+    <div class="stats-ticker" id="statsTicker">
+        <div class="ticker-label"><i class="fas fa-bolt"></i> LIVE STATS</div>
+        <div class="ticker-wrap">
+            <div class="ticker-move">
+                <span class="ticker-item"><i class="fas fa-cricket-bat-ball"></i> <strong>213 Matches</strong> &nbsp;·&nbsp; 93 Won &nbsp;·&nbsp; 90 Lost &nbsp;·&nbsp; 1 Tied &nbsp;·&nbsp; 18 No Result</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-trophy"></i> <strong>Dheeraj Ambore</strong> — All-Time Top Scorer &nbsp;·&nbsp; 2,736 Runs</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-fire"></i> <strong>Amar Pawar</strong> leads the Bowling Board &nbsp;·&nbsp; 122 Wickets</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-shield-halved"></i> <strong>Shekhar Patil</strong> — 2,428 Runs &amp; 255 Dismissals &nbsp;·&nbsp; The Keeper</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-star"></i> <strong>Amit Waghchaure (ABD)</strong> — ICON &nbsp;·&nbsp; 1,982 Runs &amp; Counting</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-crown"></i> <strong>Captain Anup More</strong> — 105 Wickets &nbsp;·&nbsp; Second on Bowling Board</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-handshake"></i> <strong>Record Partnership</strong> — Anup &amp; Amit ABD &nbsp;·&nbsp; 159 Runs in 67 Balls</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-location-dot"></i> <strong>Home Ground:</strong> MCG — Maval Cricket Ground &nbsp;·&nbsp; Est. 2023</span>
+                <span class="ticker-sep">◆</span>
+                <!-- duplicate for seamless loop -->
+                <span class="ticker-item"><i class="fas fa-cricket-bat-ball"></i> <strong>213 Matches</strong> &nbsp;·&nbsp; 93 Won &nbsp;·&nbsp; 90 Lost &nbsp;·&nbsp; 1 Tied &nbsp;·&nbsp; 18 No Result</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-trophy"></i> <strong>Dheeraj Ambore</strong> — All-Time Top Scorer &nbsp;·&nbsp; 2,736 Runs</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-fire"></i> <strong>Amar Pawar</strong> leads the Bowling Board &nbsp;·&nbsp; 122 Wickets</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-shield-halved"></i> <strong>Shekhar Patil</strong> — 2,428 Runs &amp; 255 Dismissals &nbsp;·&nbsp; The Keeper</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-star"></i> <strong>Amit Waghchaure (ABD)</strong> — ICON &nbsp;·&nbsp; 1,982 Runs &amp; Counting</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-crown"></i> <strong>Captain Anup More</strong> — 105 Wickets &nbsp;·&nbsp; Second on Bowling Board</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-handshake"></i> <strong>Record Partnership</strong> — Anup &amp; Amit ABD &nbsp;·&nbsp; 159 Runs in 67 Balls</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-location-dot"></i> <strong>Home Ground:</strong> MCG — Maval Cricket Ground &nbsp;·&nbsp; Est. 2023</span>
+                <span class="ticker-sep">◆</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE HERO ===== -->
+    <div class="events-hero">
+        <div class="events-hero-inner">
+            <div class="events-hero-label">📸 Moments</div>
+            <h1 class="events-hero-title">Team <span>Gallery</span></h1>
+            <p class="events-hero-sub">Behind the scenes, on the field, and everywhere in between.</p>
+        </div>
+    </div>
+
+    <!-- ===== EVENTS SECTION ===== -->
+    <section class="events-section">
+        <div class="events-container">
+
+            <!-- Filter Pills -->
+            <div class="events-filter-row">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="field">On The Field</button>
+                <button class="filter-btn" data-filter="moments">Team Moments</button>
+                <button class="filter-btn" data-filter="celebrations">Celebrations</button>
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="posts-grid" id="postsGrid"></div>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">SCT</div>
+                    <h3>Sahyadri Cricket Team</h3>
+                    <p>Proudly representing the spirit of the Western Ghats since 2023. Playing with heart, winning with grace.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#players">Players</a></li>
+                        <li><a href="index.html#gallery">Gallery</a></li>
+                        <li><a href="index.html#news">News</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="index.html#birthdays">Birthdays</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-row"><i class="fas fa-envelope"></i><span>sahyadricricket@gmail.com</span></div>
+                    <div class="contact-row"><i class="fas fa-phone"></i><span>+91 98765 43210</span></div>
+                    <div class="contact-row"><i class="fas fa-location-dot"></i><span>MCG — Maval Cricket Ground,<br>Maval, Maharashtra</span></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sahyadri Cricket Team &nbsp;·&nbsp; Made with <i class="fas fa-heart" style="color:#f97316"></i> for cricket</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        /* =============================================
+           DATA
+           ============================================= */
+        const EVENTS = [
+            { id:1, src:'assets/events/dheeraj-six.mp4', type:'video', category:'field', categoryLabel:'On The Field', likes:243, comments:18, time:'3 days ago',
+              caption:'When Dheeraj Ambore decides to go LONG 💥🏏 2,736 runs and THIS is why he leads the batting board. Absolute UNIT. 👑',
+              tags:'#DHJ #SahyadriCricket #SixAlert' },
+
+            { id:2, src:'assets/events/tushar-runout.mp4', type:'video', category:'field', categoryLabel:'On The Field', likes:214, comments:22, time:'5 days ago',
+              caption:'Oh no… not like this 😭💔 Our champion Tushar — run out! Heartbreaking to watch. What will happen now? The team needed him out there. Come back stronger, champ. 🙏',
+              tags:'#TusharRunOut #NotLikeThis #SahyadriHeartbreak' },
+
+            { id:3, src:'assets/events/tushar-bold.mp4', type:'video', category:'field', categoryLabel:'On The Field', likes:167, comments:14, time:'1 week ago',
+              caption:'Nooo… 😱💔 Our star Tushar cleaned up — bowled! This one hurts. What will happen to the innings now? We needed you, champion. Head up, you\'ll bounce back. 💪',
+              tags:'#TusharBowled #HurtsToWatch #SahyadriFamily' },
+
+            { id:4, src:'assets/events/rain-no-problem-balaji-sir-are-there.mp4', type:'video', category:'field', categoryLabel:'On The Field', likes:95, comments:11, time:'2 weeks ago',
+              caption:'Rain? What rain? 🌧️😂 When Balaji Sir is on the field, not even the weather dares to stop play. Absolute legend.',
+              tags:'#RainNoStop #BalajiSir #CricketNeverStops' },
+
+            { id:5, src:'assets/events/icons-and-semi-icons.jpeg', type:'image', category:'moments', categoryLabel:'Team Moments', likes:201, comments:27, time:'1 week ago',
+              caption:'ICON & Semi Icon in one frame 🌟 Amit ABD and Shekhar — two legends of Sahyadri Cricket. Rare shot. 🏆',
+              tags:'#ICON #SemiIcon #SahyadriLegends' },
+
+            { id:6, src:'assets/events/i-got-your-back-saying-amit-to-the-team.jpeg', type:'image', category:'moments', categoryLabel:'Team Moments', likes:134, comments:19, time:'2 weeks ago',
+              caption:'"I got your back" — Amit Waghchaure (ABD) to the team. This is what Sahyadri runs on. 💥❤️',
+              tags:'#TeamFirst #ABD #SahyadriSpirit' },
+
+            { id:7, src:'assets/events/waiting-at-provience.jpeg', type:'image', category:'moments', categoryLabel:'Team Moments', likes:68, comments:7, time:'3 weeks ago',
+              caption:'The calm before the storm 🌤️ Waiting at Providence — game faces on, hearts pumping. Let\'s go! 🏏',
+              tags:'#Providence #PreMatch #SahyadriCricket' },
+
+            { id:8, src:'assets/events/casual.jpeg', type:'image', category:'moments', categoryLabel:'Team Moments', likes:87, comments:13, time:'1 month ago',
+              caption:'Just the squad doing squad things 🏏✨ Off the pitch, the bond is just as strong. Cricket builds family.',
+              tags:'#SquadGoals #SahyadriFamily #OffThePitch' },
+
+            { id:9, src:'assets/events/inspirationa-speeach-by-semi-icon-shekhar.mp4', type:'video', category:'moments', categoryLabel:'Team Moments', likes:189, comments:31, time:'2 weeks ago',
+              caption:'Words that hit harder than any bouncer 🎤❤️ Semi Icon Shekhar Patil rallying the troops. This is leadership.',
+              tags:'#SemiIconSpeaks #ShekharsWords #TeamTalk' },
+
+            { id:10, src:'assets/events/amar-birthday-celebration.mp4', type:'video', category:'celebrations', categoryLabel:'Celebrations', likes:178, comments:24, time:'1 month ago',
+              caption:'Happy Birthday, Amar Pawar! 🎂🎉 122 wickets and counting — may you keep rattling stumps for years to come! ❤️',
+              tags:'#HBDAmar #BowlingBoardLeader #SahyadriCelebrates' },
+
+            { id:11, src:'assets/events/man-of-the-match-pranesh-by-akash.jpeg', type:'image', category:'celebrations', categoryLabel:'Celebrations', likes:112, comments:16, time:'3 weeks ago',
+              caption:'Man of the Match goes to Pranesh Patil! 🏆 Presented by our very own Ek Kavi — Akash Bhandwalkar. Well deserved, left-arm wizard! 👏',
+              tags:'#ManOfTheMatch #PraneshPatil #EkKavi' },
+
+            { id:12, src:'assets/events/Jersey-revealing-from-home.jpeg', type:'image', category:'celebrations', categoryLabel:'Celebrations', likes:156, comments:21, time:'1 month ago',
+              caption:'The moment we\'ve been waiting for 🔥 New jersey reveal — straight from home! Who\'s ready to wear the colours? 🏏',
+              tags:'#JerseyReveal #NewKit #SahyadriColors' },
+        ];
+
+        /* =============================================
+           CATEGORY PILL CLASS
+           ============================================= */
+        function catClass(category) {
+            if (category === 'field')         return 'cat-field';
+            if (category === 'moments')       return 'cat-moments';
+            if (category === 'celebrations')  return 'cat-celebrations';
+            return '';
+        }
+
+        /* =============================================
+           BUILD CARD HTML
+           ============================================= */
+        function buildCard(ev) {
+            const pillClass = catClass(ev.category);
+
+            const mediaHTML = ev.type === 'video'
+                ? `<video src="${ev.src}" loop muted playsinline preload="metadata"></video>
+                   <div class="play-overlay" data-id="${ev.id}">
+                       <div class="play-btn-circle"><i class="fas fa-play" style="margin-left:3px"></i></div>
+                   </div>`
+                : `<img src="${ev.src}" alt="${ev.categoryLabel} — Sahyadri Cricket" loading="lazy">`;
+
+            return `
+            <div class="post-card" data-category="${ev.category}" data-id="${ev.id}">
+                <div class="post-header">
+                    <div class="post-header-left">
+                        <div class="post-avatar">SCT</div>
+                        <span class="post-username">sahyadricricket</span>
+                    </div>
+                    <span class="post-cat-pill ${pillClass}">${ev.categoryLabel}</span>
+                </div>
+                <div class="post-media">
+                    ${mediaHTML}
+                </div>
+                <div class="post-actions">
+                    <button class="action-btn action-btn-heart" data-id="${ev.id}" aria-label="Like">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="action-btn action-btn-comment" aria-label="Comment">
+                        <i class="far fa-comment"></i>
+                    </button>
+                    <button class="action-btn action-btn-share" aria-label="Share">
+                        <i class="far fa-paper-plane"></i>
+                    </button>
+                    <button class="action-btn action-bookmark" aria-label="Save">
+                        <i class="far fa-bookmark"></i>
+                    </button>
+                </div>
+                <div class="post-body">
+                    <div class="post-likes" data-likes-id="${ev.id}">${ev.likes.toLocaleString()} likes</div>
+                    <div class="post-caption">
+                        <strong>sahyadricricket</strong> ${ev.caption}
+                    </div>
+                    <div class="post-tags">${ev.tags}</div>
+                    <div class="post-time">${ev.time}</div>
+                </div>
+            </div>`;
+        }
+
+        /* =============================================
+           RENDER ALL CARDS
+           ============================================= */
+        const grid = document.getElementById('postsGrid');
+        grid.innerHTML = EVENTS.map(buildCard).join('');
+
+        /* =============================================
+           LIKE BUTTON BEHAVIOUR
+           ============================================= */
+        const likeState = {};
+        EVENTS.forEach(ev => { likeState[ev.id] = { liked: false, count: ev.likes }; });
+
+        grid.addEventListener('click', function(e) {
+            const heartBtn = e.target.closest('.action-btn-heart');
+            if (!heartBtn) return;
+
+            const id = parseInt(heartBtn.dataset.id, 10);
+            const state = likeState[id];
+            const iconEl = heartBtn.querySelector('i');
+            const likesEl = document.querySelector(`.post-likes[data-likes-id="${id}"]`);
+
+            if (state.liked) {
+                state.liked = false;
+                state.count -= 1;
+                iconEl.className = 'far fa-heart';
+                heartBtn.classList.remove('liked');
+            } else {
+                state.liked = true;
+                state.count += 1;
+                iconEl.className = 'fas fa-heart';
+                heartBtn.classList.add('liked');
+                heartBtn.style.transform = 'scale(1.3)';
+                setTimeout(() => { heartBtn.style.transform = ''; }, 220);
+            }
+            likesEl.textContent = state.count.toLocaleString() + ' likes';
+        });
+
+        /* =============================================
+           VIDEO PLAY / PAUSE
+           ============================================= */
+        grid.addEventListener('click', function(e) {
+            const overlay = e.target.closest('.play-overlay');
+            if (!overlay) return;
+
+            const mediaDiv = overlay.parentElement;
+            const video    = mediaDiv.querySelector('video');
+            if (!video) return;
+
+            if (video.paused) {
+                video.play();
+                overlay.classList.add('hidden');
+            } else {
+                video.pause();
+                overlay.classList.remove('hidden');
+            }
+        });
+
+        // Re-show overlay when video ends (loop handles looping, but keep overlay hidden while playing)
+        grid.querySelectorAll('video').forEach(vid => {
+            vid.addEventListener('pause', () => {
+                const overlay = vid.parentElement.querySelector('.play-overlay');
+                if (overlay) overlay.classList.remove('hidden');
+            });
+        });
+
+        /* =============================================
+           FILTER BEHAVIOUR
+           ============================================= */
+        const filterBtns = document.querySelectorAll('.events-filter-row .filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.post-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        /* =============================================
+           SCROLL PROGRESS BAR
+           ============================================= */
+        const scrollBar = document.getElementById('scrollBar');
+        window.addEventListener('scroll', () => {
+            const scrolled  = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            scrollBar.style.width = (maxScroll > 0 ? (scrolled / maxScroll) * 100 : 0) + '%';
+        }, { passive: true });
+
+        /* =============================================
+           NAVBAR SCROLL EFFECT
+           ============================================= */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        /* =============================================
+           HAMBURGER MENU
+           ============================================= */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        /* =============================================
+           BACK TO TOP
+           ============================================= */
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('show', window.scrollY > 400);
+        }, { passive: true });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

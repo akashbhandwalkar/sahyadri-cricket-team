@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahyadri Cricket Team</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Scroll progress -->
+    <div class="scroll-bar" id="scrollBar"></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">SCT</div>
+                <span>Sahyadri Cricket Team</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home"      class="nav-link active">Home</a></li>
+                <li><a href="#about"     class="nav-link">About</a></li>
+                <li><a href="#players"   class="nav-link">Players</a></li>
+
+                <li><a href="#moments"   class="nav-link">Moments</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="#birthdays" class="nav-link">Birthdays</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== STATS TICKER ===== -->
+    <div class="stats-ticker" id="statsTicker">
+        <div class="ticker-label"><i class="fas fa-bolt"></i> LIVE STATS</div>
+        <div class="ticker-wrap">
+            <div class="ticker-move">
+                <span class="ticker-item"><i class="fas fa-cricket-bat-ball"></i> <strong>213 Matches</strong> &nbsp;·&nbsp; 93 Won &nbsp;·&nbsp; 90 Lost &nbsp;·&nbsp; 1 Tied &nbsp;·&nbsp; 18 No Result</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-trophy"></i> <strong>Dheeraj Ambore</strong> — All-Time Top Scorer &nbsp;·&nbsp; 2,736 Runs</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-fire"></i> <strong>Amar Pawar</strong> leads the Bowling Board &nbsp;·&nbsp; 122 Wickets</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-shield-halved"></i> <strong>Shekhar Patil</strong> — 2,428 Runs &amp; 255 Dismissals &nbsp;·&nbsp; The Keeper</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-star"></i> <strong>Amit Waghchaure (ABD)</strong> — ICON &nbsp;·&nbsp; 1,982 Runs &amp; Counting</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-crown"></i> <strong>Captain Anup More</strong> — 105 Wickets &nbsp;·&nbsp; Second on Bowling Board</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-handshake"></i> <strong>Record Partnership</strong> — Anup &amp; Amit ABD &nbsp;·&nbsp; 159 Runs in 67 Balls</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-location-dot"></i> <strong>Home Ground:</strong> MCG — Maval Cricket Ground &nbsp;·&nbsp; Est. 2023</span>
+                <span class="ticker-sep">◆</span>
+                <!-- duplicate for seamless loop -->
+                <span class="ticker-item"><i class="fas fa-cricket-bat-ball"></i> <strong>213 Matches</strong> &nbsp;·&nbsp; 93 Won &nbsp;·&nbsp; 90 Lost &nbsp;·&nbsp; 1 Tied &nbsp;·&nbsp; 18 No Result</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-trophy"></i> <strong>Dheeraj Ambore</strong> — All-Time Top Scorer &nbsp;·&nbsp; 2,736 Runs</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-fire"></i> <strong>Amar Pawar</strong> leads the Bowling Board &nbsp;·&nbsp; 122 Wickets</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-shield-halved"></i> <strong>Shekhar Patil</strong> — 2,428 Runs &amp; 255 Dismissals &nbsp;·&nbsp; The Keeper</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-star"></i> <strong>Amit Waghchaure (ABD)</strong> — ICON &nbsp;·&nbsp; 1,982 Runs &amp; Counting</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-crown"></i> <strong>Captain Anup More</strong> — 105 Wickets &nbsp;·&nbsp; Second on Bowling Board</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-handshake"></i> <strong>Record Partnership</strong> — Anup &amp; Amit ABD &nbsp;·&nbsp; 159 Runs in 67 Balls</span>
+                <span class="ticker-sep">◆</span>
+                <span class="ticker-item"><i class="fas fa-location-dot"></i> <strong>Home Ground:</strong> MCG — Maval Cricket Ground &nbsp;·&nbsp; Est. 2023</span>
+                <span class="ticker-sep">◆</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-star"></i> Est. 2023 &nbsp;·&nbsp; MCG · Maval, Maharashtra</div>
+            <h1 class="hero-title">Sahyadri<br><span>Cricket Team</span></h1>
+            <p class="hero-tagline">Where Passion Meets the Pitch</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="213">0</span>
+                    <span class="stat-label">Matches</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="93">0</span>
+                    <span class="stat-label">Wins</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="90">0</span>
+                    <span class="stat-label">Losses</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="15">0</span>
+                    <span class="stat-label">Players</span>
+                </div>
+            </div>
+            <a href="#players" class="hero-btn">Meet Our Team <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Story</span>
+                <h2 class="section-title">About Us</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Born in the Heart of the Sahyadris</h3>
+                    <p>Sahyadri Cricket Team was founded in 2023 by a group of passionate cricket lovers from Maval, Maharashtra. What started as casual weekend friendlies has grown into one of the most competitive amateur cricket clubs in the region in a remarkably short time.</p>
+                    <p>Named after the majestic Sahyadri mountain range, our team embodies the strength, endurance, and spirit of those peaks. We play not just for victories, but for the love of the game, the camaraderie, and the pride of representing our community. In just two years, we've played 213 matches — and we're just getting started.</p>
+                    <div class="about-highlights">
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-trophy"></i></div>
+                            <div>
+                                <strong>Regional Champions</strong>
+                                <span>Multiple Championships since 2023</span>
+                            </div>
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-users"></i></div>
+                            <div>
+                                <strong>15 Active Players</strong>
+                                <span>213 matches played</span>
+                            </div>
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-location-dot"></i></div>
+                            <div>
+                                <strong>Home Ground</strong>
+                                <span>MCG — Maval Cricket Ground</span>
+                            </div>
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-icon"><i class="fas fa-handshake"></i></div>
+                            <div>
+                                <strong>Record Partnership</strong>
+                                <span>159 runs · 67 balls (Anup &amp; Amit ABD)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="cricket-card">
+                        <div class="field-visual">
+                            <div class="field-ring ring-outer"></div>
+                            <div class="field-ring ring-mid"></div>
+                            <div class="field-ring ring-inner"></div>
+                            <div class="pitch-strip"></div>
+                            <div class="crease crease-top"></div>
+                            <div class="crease crease-bottom"></div>
+                            <div class="field-label">MCG — Maval</div>
+                        </div>
+                        <div class="card-footer-quote">
+                            <i class="fas fa-quote-left"></i>
+                            <p>"Play Hard, Play Fair, Play with Heart"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PLAYERS ===== -->
+    <section id="players" class="section players-section bg-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">The Squad</span>
+                <h2 class="section-title">Our Players</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Players</button>
+                <button class="filter-btn" data-filter="Batsman">Batsmen</button>
+                <button class="filter-btn" data-filter="Bowler">Bowlers</button>
+                <button class="filter-btn" data-filter="All-rounder">All-rounders</button>
+                <button class="filter-btn" data-filter="WK">Wicket Keepers</button>
+            </div>
+            <div class="players-grid" id="playersGrid"></div>
+        </div>
+
+        <!-- Player Detail Modal -->
+        <div class="modal-overlay" id="playerModal">
+            <div class="modal-box">
+                <button class="modal-close" id="modalClose"><i class="fas fa-xmark"></i></button>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MOMENTS ===== -->
+    <section id="moments" class="section moments-section bg-alt">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">From The Pitch</span>
+                <h2 class="section-title">Latest Moments</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="moments-grid">
+
+                <!-- Post 1: Tushar Run-out -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-header-left">
+                            <div class="post-avatar">SCT</div>
+                            <span class="post-username">sahyadricricket</span>
+                        </div>
+                        <span class="post-cat-pill cat-field">On The Field</span>
+                    </div>
+                    <div class="post-media">
+                        <video src="assets/events/tushar-runout.mp4" loop muted playsinline preload="metadata"></video>
+                        <div class="play-overlay">
+                            <div class="play-btn-circle"><i class="fas fa-play" style="margin-left:3px"></i></div>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn action-btn-heart" aria-label="Like"><i class="far fa-heart"></i></button>
+                        <button class="action-btn action-btn-comment" aria-label="Comment"><i class="far fa-comment"></i></button>
+                        <button class="action-btn action-btn-share" aria-label="Share"><i class="far fa-paper-plane"></i></button>
+                        <button class="action-btn action-bookmark" aria-label="Save"><i class="far fa-bookmark"></i></button>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-likes">214 likes</div>
+                        <div class="post-caption"><strong>sahyadricricket</strong> Oh no… not like this 😭💔 Our champion Tushar — run out! Heartbreaking to watch. What will happen now? The team needed him out there. Come back stronger, champ. 🙏</div>
+                        <div class="post-tags">#TusharRunOut #NotLikeThis #SahyadriHeartbreak</div>
+                        <div class="post-time">5 days ago</div>
+                    </div>
+                </div>
+
+                <!-- Post 2: Tushar Bowled -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-header-left">
+                            <div class="post-avatar">SCT</div>
+                            <span class="post-username">sahyadricricket</span>
+                        </div>
+                        <span class="post-cat-pill cat-field">On The Field</span>
+                    </div>
+                    <div class="post-media">
+                        <video src="assets/events/tushar-bold.mp4" loop muted playsinline preload="metadata"></video>
+                        <div class="play-overlay">
+                            <div class="play-btn-circle"><i class="fas fa-play" style="margin-left:3px"></i></div>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn action-btn-heart" aria-label="Like"><i class="far fa-heart"></i></button>
+                        <button class="action-btn action-btn-comment" aria-label="Comment"><i class="far fa-comment"></i></button>
+                        <button class="action-btn action-btn-share" aria-label="Share"><i class="far fa-paper-plane"></i></button>
+                        <button class="action-btn action-bookmark" aria-label="Save"><i class="far fa-bookmark"></i></button>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-likes">167 likes</div>
+                        <div class="post-caption"><strong>sahyadricricket</strong> Nooo… 😱💔 Our star Tushar cleaned up — bowled! This one hurts. What will happen to the innings now? We needed you, champion. Head up, you'll bounce back. 💪</div>
+                        <div class="post-tags">#TusharBowled #HurtsToWatch #SahyadriFamily</div>
+                        <div class="post-time">1 week ago</div>
+                    </div>
+                </div>
+
+                <!-- Post 3: Shekhar Inspirational Speech -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-header-left">
+                            <div class="post-avatar">SCT</div>
+                            <span class="post-username">sahyadricricket</span>
+                        </div>
+                        <span class="post-cat-pill cat-moments">Team Moments</span>
+                    </div>
+                    <div class="post-media">
+                        <video src="assets/events/inspirationa-speeach-by-semi-icon-shekhar.mp4" loop muted playsinline preload="metadata"></video>
+                        <div class="play-overlay">
+                            <div class="play-btn-circle"><i class="fas fa-play" style="margin-left:3px"></i></div>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn action-btn-heart" aria-label="Like"><i class="far fa-heart"></i></button>
+                        <button class="action-btn action-btn-comment" aria-label="Comment"><i class="far fa-comment"></i></button>
+                        <button class="action-btn action-btn-share" aria-label="Share"><i class="far fa-paper-plane"></i></button>
+                        <button class="action-btn action-bookmark" aria-label="Save"><i class="far fa-bookmark"></i></button>
+                    </div>
+                    <div class="post-body">
+                        <div class="post-likes">189 likes</div>
+                        <div class="post-caption"><strong>sahyadricricket</strong> Words that hit harder than any bouncer 🎤❤️ Semi Icon Shekhar Patil rallying the troops. This is what Sahyadri runs on.</div>
+                        <div class="post-tags">#SemiIconSpeaks #ShekharsWords #TeamTalk</div>
+                        <div class="post-time">2 weeks ago</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="moments-cta">
+                <a href="events.html" class="hero-btn">View All Moments <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BIRTHDAYS ===== -->
+    <section id="birthdays" class="section birthdays-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Celebrations</span>
+                <h2 class="section-title"><i class="fas fa-cake-candles"></i> Birthdays</h2>
+                <div class="section-divider"></div>
+                <p class="section-sub">Wishing all our players a wonderful birthday!</p>
+            </div>
+            <div id="birthdayContainer"></div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">SCT</div>
+                    <h3>Sahyadri Cricket Team</h3>
+                    <p>Proudly representing the spirit of the Western Ghats since 2023. Playing with heart, winning with grace.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#players">Players</a></li>
+
+                        <li><a href="#moments">Moments</a></li>
+                        <li><a href="#birthdays">Birthdays</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-row"><i class="fas fa-envelope"></i><span>sahyadricricket@gmail.com</span></div>
+                    <div class="contact-row"><i class="fas fa-phone"></i><span>+91 98765 43210</span></div>
+                    <div class="contact-row"><i class="fas fa-location-dot"></i><span>MCG — Maval Cricket Ground,<br>Maval, Maharashtra</span></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sahyadri Cricket Team &nbsp;·&nbsp; Made with <i class="fas fa-heart" style="color:#f97316"></i> for cricket</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        // Video play/pause for moments section
+        document.querySelectorAll('.moments-section .play-overlay').forEach(overlay => {
+            overlay.addEventListener('click', () => {
+                const video = overlay.previousElementSibling;
+                if (video.paused) { video.play(); overlay.classList.add('hidden'); }
+                else              { video.pause(); overlay.classList.remove('hidden'); }
+            });
+        });
+
+        // Like toggle for moments section
+        document.querySelectorAll('.moments-section .action-btn-heart').forEach(btn => {
+            let liked = false;
+            btn.addEventListener('click', () => {
+                liked = !liked;
+                const icon    = btn.querySelector('i');
+                const likesEl = btn.closest('.post-card').querySelector('.post-likes');
+                const count   = parseInt(likesEl.textContent);
+                icon.className    = liked ? 'fas fa-heart' : 'far fa-heart';
+                btn.style.color   = liked ? '#ef4444' : '';
+                likesEl.textContent = (liked ? count + 1 : count - 1) + ' likes';
+            });
+        });
+    </script>
+</body>
+</html>
